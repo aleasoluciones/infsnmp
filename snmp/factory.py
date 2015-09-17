@@ -4,7 +4,7 @@ import glob
 import os.path
 
 import os
-from common import Factory
+from infcommon import Factory
 from snmp import (
     clients,
     types,

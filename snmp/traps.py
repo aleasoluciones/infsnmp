@@ -5,11 +5,11 @@ from pysnmp.carrier.asynsock.dgram import udp
 from pyasn1.codec.ber import decoder
 from pysnmp.proto import api
 from snmp import types
-import common
+import infcommon
 from infcommon import clock
-from infrastructure import logger
+import logging
 
-class PySnmpTrap(common.AttributesComparison):
+class PySnmpTrap(infcommon.AttributesComparison):
 
     def __init__(self, timestamp, source_address, trap_oid, values):
         self.timestamp = timestamp
@@ -49,7 +49,7 @@ class PySnmpTrapDispatcher(object):
             while whole_msg:
                 msg_version = int(api.decodeMessageVersion(whole_msg))
                 if msg_version not in api.protoModules:
-                    logger.info('Unsupported SNMP version {} {}'.format(msg_version, transport_address[0]))
+                    logging.info('Unsupported SNMP version {} {}'.format(msg_version, transport_address[0]))
                     return
 
                 proto_module = api.protoModules[msg_version]
@@ -57,12 +57,12 @@ class PySnmpTrapDispatcher(object):
                 request_msg, whole_msg = decoder.decode(whole_msg, asn1Spec=proto_module.Message(),)
                 request_pdu = proto_module.apiMessage.getPDU(request_msg)
                 if transport_address[0] == '0.0.0.0':
-                    logger.info('Broadcast snmptrap ignored')
+                    logging.info('Broadcast snmptrap ignored')
                     return
                 if request_pdu.isSameTypeWith(proto_module.TrapPDU()):
                     self._extract_and_process_trap(proto_module, request_pdu, transport_address)
         except Exception as exc:
-            logger.error('Error snmptrap: {}  {}'.format(exc, exc.__class__.__name__))
+            logging.error('Error snmptrap: {}  {}'.format(exc, exc.__class__.__name__))
 
 
     def _extract_and_process_trap(self, proto_module, request_pdu, transport_address):
@@ -82,7 +82,7 @@ class PySnmpTrapDispatcher(object):
                             values=values)
                 )
             except TypeError:
-                logger.error('RequestPDU Error: {} transport_address {}'.format(request_pdu, transport_address))
+                logging.error('RequestPDU Error: {} transport_address {}'.format(request_pdu, transport_address))
 
 
     def _extract_value(self, val):

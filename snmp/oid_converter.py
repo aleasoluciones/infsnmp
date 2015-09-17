@@ -1,12 +1,13 @@
 # -*- coding: utf-8 -*-
 
+import logging
 from pysnmp.smi import builder, view, error
-import common
-from infrastructure import logger
+import infcommon
 from snmp import exceptions
 
 
-class MIBSymbol(common.AttributesComparison):
+
+class MIBSymbol(infcommon.AttributesComparison):
 
     def __init__(self, base_oid, labels, node_suffixes):
         self.base_oid = base_oid
@@ -71,4 +72,4 @@ class PyOIDConverter(object):
         try:
             mib_builder.loadModules(module)
         except error.SmiError as exc:
-            logger.info("Error loading mib module {module} {exc}".format(module=module, exc=exc))
+            logging.info("Error loading mib module {module} {exc}".format(module=module, exc=exc))

@@ -5,7 +5,7 @@ from pysnmp.proto.rfc1902 import ObjectName
 from pysnmp.smi.error import NoSuchObjectError
 import socket
 from snmp import types, exceptions
-from infrastructure import logger
+
 
 class PySnmpClient(object):
     AGENT_ID = 'felix_agent'
