@@ -4,7 +4,7 @@ from pysnmp.entity.rfc3413.oneliner import cmdgen
 from pysnmp.proto.rfc1902 import ObjectName
 from pysnmp.smi.error import NoSuchObjectError
 import socket
-from snmp import types, exceptions
+from infsnmp import types, exceptions
 
 
 class PySnmpClient(object):

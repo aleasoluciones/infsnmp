@@ -6,7 +6,7 @@ from hamcrest import *
 
 from pysnmp.proto import rfc1902
 
-from snmp import types, clients, exceptions
+from infsnmp import types, clients, exceptions
 
 
 def snmp_integer(value):

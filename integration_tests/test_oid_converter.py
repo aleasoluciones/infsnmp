@@ -4,7 +4,7 @@ import os.path
 import unittest
 from hamcrest import *
 from doublex import *
-from snmp import oid_converter, exceptions
+from infsnmp import oid_converter, exceptions
 
 PYMIBSDIR = os.path.abspath(os.path.join(os.path.dirname(__file__), '../pymibs/'))
 

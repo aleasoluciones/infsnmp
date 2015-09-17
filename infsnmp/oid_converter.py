@@ -3,7 +3,7 @@
 import logging
 from pysnmp.smi import builder, view, error
 import infcommon
-from snmp import exceptions
+from infsnmp import exceptions
 
 
 

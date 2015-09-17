@@ -5,7 +5,7 @@ import os.path
 
 import os
 from infcommon import Factory
-from snmp import (
+from infsnmp import (
     clients,
     types,
     oid_converter as oid_converter_module,

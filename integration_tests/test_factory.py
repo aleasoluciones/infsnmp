@@ -3,8 +3,8 @@
 import unittest
 from doublex import *
 
-from snmp import factory
-from snmp import clients, types, traps
+from infsnmp import factory
+from infsnmp import clients, types, traps
 
 IRRELEVANT_TRAP_HANDLER = 'irrelevant_trap_handler'
 IRRELEVANT_DIRECTORY = 'irrelevant_directory'

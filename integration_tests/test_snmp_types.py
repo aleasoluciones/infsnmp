@@ -5,7 +5,7 @@ import pysnmp
 from pysnmp.proto import rfc1902
 from pyasn1.type import univ
 
-from snmp import types
+from infsnmp import types
 
 
 class PySnmpValuesTest(unittest.TestCase):

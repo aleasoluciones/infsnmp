@@ -4,7 +4,7 @@ from pysnmp.carrier.asynsock.dispatch import AsynsockDispatcher
 from pysnmp.carrier.asynsock.dgram import udp
 from pyasn1.codec.ber import decoder
 from pysnmp.proto import api
-from snmp import types
+from infsnmp import types
 import infcommon
 from infcommon import clock
 import logging
