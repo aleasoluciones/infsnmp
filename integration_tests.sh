@@ -9,7 +9,7 @@ trap "pkill -f snmpsimd.py; exit" SIGHUP SIGINT SIGTERM
 
 ${VIRTUAL_ENV}/bin/python ${VIRTUAL_ENV}/bin/snmpsimd.py --v2c-arch --agent-port=1161 --device-dir=integration_tests/snmpsim/simulated_data/ --validate-device-data &
 
-nosetests $INTEGRATION_TESTS -s --logging-clear-handlers --processes=16 --process-timeout=5
+nosetests $INTEGRATION_TESTS -s --logging-clear-handlers --processes=16 --process-timeout=20
 RETCODE=$?
 
 pkill -f snmpsimd.py
