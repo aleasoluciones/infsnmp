@@ -9,4 +9,6 @@ install:
   - pip install -r requirements.txt  -r requirements-dev.txt
 
 script:
-  - ./integration_tests.sh
+  - ${VIRTUAL_ENV}/bin/python ${VIRTUAL_ENV}/bin/snmpsimd.py --v2c-arch --agent-port=1161 --device-dir=integration_tests/snmpsim/simulated_data/ --validate-device-data &
+  - nosetests integration_tests -s --logging-clear-handlers --processes=16 --process-timeout=20
+
