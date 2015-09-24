@@ -9,6 +9,6 @@ install:
   - pip install -r requirements.txt  -r requirements-dev.txt
 
 script:
-  - ${VIRTUAL_ENV}/bin/python ${VIRTUAL_ENV}/bin/snmpsimd.py --v2c-arch --agent-port=1161 --device-dir=integration_tests/snmpsim/simulated_data/ --validate-device-data &
+  - ${VIRTUAL_ENV}/bin/python ${VIRTUAL_ENV}/bin/snmpsimd.py --v2c-arch --agent-udpv4-endpoint=127.0.0.1:1161 --device-dir=integration_tests/snmpsim/simulated_data/ --validate-device-data &
   - nosetests integration_tests -s --logging-clear-handlers --processes=16 --process-timeout=20
 
