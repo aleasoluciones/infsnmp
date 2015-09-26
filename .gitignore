@@ -3,3 +3,5 @@
 
 # Vim
 .*.sw[po]
+
+*.pyc
