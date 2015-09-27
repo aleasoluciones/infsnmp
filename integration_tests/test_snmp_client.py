@@ -80,19 +80,20 @@ class SnmpClientTest(unittest.TestCase):
 
         assert_that(result, has_length(0))
 
-    def Xtest_set(self):
+    def test_set(self):
         oid_1 = '1.3.6.1.2.1.1.5.0'
-        oid_2 = '1.3.6.1.2.1.1.6.0'
         value_1 = snmp_octect_string('irrelevant_value1').value()
-        value_2 = snmp_octect_string('irrelevant_value2').value()
-        snmp_set_values = ((oid_1, value_1), (oid_2, value_2),)
-        community = 'set'
+        snmp_set_values = ((oid_1, value_1), )
+        community = 'rwcommunity'
 
         self.snmp_client.set(
             self.host, community, snmp_set_values, port=self.port, timeout=1)
 
-        # only tests that the set message don't generate a exception
-        # I don't know how to test that the agent react to the set
+        result = self.snmp_client.get(
+            self.host, community, [oid_1], port=self.port, timeout=1)
+
+        assert_that(
+            result, equal_to([(oid_1, snmp_string("irrelevant_value1"))]))
 
     def test_set_with_timeout(self):
         oid_1 = '1.3.6.1.2.1.1.5.0'
