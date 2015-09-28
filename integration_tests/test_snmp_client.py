@@ -62,13 +62,12 @@ class SnmpClientTest(unittest.TestCase):
         self.assertRaises(exceptions.SNMPExceptionError, self.snmp_client.get,
                           '127.0.0.1', 'incorrect-community', ['1.1'], port=self.port, timeout=1)
 
-    def Xtest_get_unknown_oid(self):
+    def test_get_unknown_oid(self):
         unknown_oid = '1.2'
 
         result = self.snmp_client.get(
             self.host, self.community, [unknown_oid], port=self.port)
 
-        print result
         value = result[0][1]
         assert_that(value.exists(), is_(False))
 
