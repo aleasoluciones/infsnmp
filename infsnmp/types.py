@@ -23,7 +23,11 @@ class PySnmpValue(object):
         self.snmp_value = snmp_value
 
     def exists(self):
-        return not isinstance(self.snmp_value, rfc1905.NoSuchInstance)
+        if isinstance(self.snmp_value, rfc1905.NoSuchInstance):
+            return False
+        if isinstance(self.snmp_value, rfc1905.NoSuchObject):
+            return False
+        return True
 
 
     def is_valid(self):
