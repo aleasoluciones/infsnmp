@@ -1,12 +1,13 @@
 import unittest
 from hamcrest import *
 
+import datetime
 import pysnmp
 from pysnmp.proto import rfc1902
 from pyasn1.type import univ
 
+from infcommon import clock
 from infsnmp import types
-
 
 class PySnmpValuesTest(unittest.TestCase):
 
@@ -40,7 +41,8 @@ class PySnmpValuesTest(unittest.TestCase):
         # '07dd011c0c292c002b0100' -> '2013-01-28 12:41:44' -> timstamp 1359373304.0
         snmp_value = rfc1902.OctetString('07dd011c0c292c002b0100'.decode('hex'))
 
-        assert_that(types.PySnmpValue(snmp_value).to_timestamp(), is_(1359373304.0))
+        assert_that(types.PySnmpValue(snmp_value).to_datetime(), is_(datetime.datetime(2013,01,28,12,41,44)))
+        assert_that(types.PySnmpValue(snmp_value).to_timestamp(), clock.Clock.timestamp(datetime.datetime(2013,01,28,12,41,44)))
         assert_that(types.PySnmpValue(snmp_value).type_text(), is_('OctetString'))
 
     def test_gauge32(self):

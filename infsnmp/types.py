@@ -45,8 +45,11 @@ class PySnmpValue(object):
     def to_hex_string(self):
         return self.value().encode('hex')
 
+    def to_datetime(self):
+        return datetime.datetime(*struct.unpack('>hbbbbbbcbb', self.value())[:7])
+    
     def to_timestamp(self):
-        return clock.Clock.timestamp(datetime.datetime(*struct.unpack('>hbbbbbbcbb', self.value())[:7]))
+        return clock.Clock.timestamp(self.to_datetime())
 
     def sanetized_value(self):
         return self.value().replace(chr(0), '')
