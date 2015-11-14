@@ -21,11 +21,9 @@ class PySnmpClient(object):
                     cmdgen.UdpTransportTarget((host, port), timeout=timeout, retries=retries),
                     *oids)
             if err_indication:
-                    raise exceptions.SNMPExceptionError("SNMP error %s - %s" % (host, err_indication))
+                    raise exceptions.SNMPLevelError(msg="SNMP error %s - %s" % (host, err_indication))
             if err_status:
-                    raise exceptions.SNMPExceptionError("SNMP PDU-level error %s status %s at %s" % (host,
-                                                                                          err_status,
-                                                                                          err_index))
+                    raise exceptions.SNMPLevelError(msg="SNMP PDU-level error %s status %s at %s" % (host, err_status, err_index))
             result = []
             for oid, value in var_binds:
                 oid = str(oid)
@@ -33,7 +31,7 @@ class PySnmpClient(object):
                 result.append((oid, value))
             return result
         except socket.error as exc:
-            raise exceptions.SNMPExceptionError(exc)
+            raise exceptions.SNMPSocketError(exc)
         except NoSuchObjectError as exc:
             raise exceptions.InvalidOIDError()
 
