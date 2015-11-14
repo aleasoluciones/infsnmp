@@ -10,7 +10,7 @@ python:
   - "2.7"
 before_install:
   - sudo apt-get -y update
-  - sudo apt-get -y dist-upgrade
+  - sudo apt-get -o DPkg::options::=--force-confmiss -y --force-yes install docker-engine
 
 install:
   - python setup.py develop
