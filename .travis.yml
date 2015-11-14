@@ -8,6 +8,7 @@ language: python
 python:
   - "2.6"
   - "2.7"
+  - "3.4"
 before_install:
   - sudo apt-get -y update
   - sudo apt-get -o DPkg::options::=--force-confmiss -y --force-yes install docker-engine
