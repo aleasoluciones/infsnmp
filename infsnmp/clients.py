@@ -45,11 +45,10 @@ class PySnmpClient(object):
                 ObjectName(cmd_oid))
 
             if err_indication:
-                raise exceptions.SNMPExceptionError("SNMP error %s - %s" % (host, err_indication))
+                raise exceptions.SNMPLevelError(msg="SNMP error %s - %s" % (host, err_indication))
             if err_status:
-                raise exceptions.SNMPExceptionError("SNMP PDU-level error %s status %s at %s" % (host,
-                                                                             err_status,
-                                                                             err_index))
+                raise exceptions.SNMPLevelError(msg="SNMP PDU-level error %s status %s at %s" % (host, err_status, err_index))
+
             result = []
             for snmp_value in var_binds:
                 snmp_value = snmp_value[0]
@@ -58,7 +57,7 @@ class PySnmpClient(object):
                     result.append((oid, value))
             return tuple(result)
         except socket.error, exc:
-            raise exceptions.SNMPExceptionError(exc)
+            raise exceptions.SNMPSocketError(exc)
 
     def bulk_walk(self, host, community, str_oid, port=DEFAULT_PORT, timeout=DEFAULT_TIMEOUT, retries=DEFAULT_RETRIES, non_repeaters=0, max_repetitions=50):
         cmd_oid = self.__convert_to_pysnmp_oid_format(str_oid)
@@ -71,11 +70,10 @@ class PySnmpClient(object):
                 ObjectName(cmd_oid))
 
             if err_indication:
-                raise exceptions.SNMPExceptionError("SNMP error %s - %s" % (host, err_indication))
+                raise exceptions.SNMPLevelError(msg="SNMP error %s - %s" % (host, err_indication))
             if err_status:
-                raise exceptions.SNMPExceptionError("SNMP PDU-level error %s status %s at %s" % (host,
-                                                                             err_status,
-                                                                             err_index))
+                raise exceptions.SNMPLevelError(msg="SNMP PDU-level error %s status %s at %s" % (host, err_status, err_index))
+
             result = []
             for snmp_value in var_binds:
                 snmp_value = snmp_value[0]
@@ -84,7 +82,7 @@ class PySnmpClient(object):
                     result.append((oid, value))
             return tuple(result)
         except socket.error, exc:
-            raise exceptions.SNMPExceptionError(exc)
+            raise exceptions.SNMPSocketError(exc)
 
     def __convert_to_pysnmp_oid_format(self, str_oid):
         cmd_oid = map(int, str_oid.split('.'))
@@ -106,11 +104,10 @@ class PySnmpClient(object):
                 cmdgen.UdpTransportTarget((host, port), timeout=timeout, retries=retries), *snmp_values)
 
             if err_indication:
-                raise exceptions.SNMPExceptionError("SNMP error %s - %s" % (host, err_indication))
+                raise exceptions.SNMPLevelError(msg="SNMP error %s - %s" % (host, err_indication))
             if err_status:
-                raise exceptions.SNMPExceptionError("SNMP PDU-level error %s status %s at %s" % (host,
-                                                                                      err_status,
-                                                                                      err_index))
+                raise exceptions.SNMPLevelError(msg="SNMP PDU-level error %s status %s at %s" % (host, err_status, err_index))
+
         except socket.error, exc:
             raise exceptions.SNMPExceptionError(exc)
 
