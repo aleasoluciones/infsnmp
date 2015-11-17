@@ -94,6 +94,15 @@ class SnmpClientTest(unittest.TestCase):
         assert_that(
             result, equal_to([(oid_1, snmp_string("irrelevant_value1"))]))
 
+    def test_error_set(self):
+        oid_1 = '1.3.6.1.2.1.1.5.0'
+        value_1 = snmp_octect_string('irrelevant_value1').value()
+        snmp_set_values = ((oid_1, value_1), )
+        community = 'community'
+
+        self.snmp_client.set(
+            self.host, community, snmp_set_values, port=self.port, timeout=1)
+
     def test_set_with_timeout(self):
         oid_1 = '1.3.6.1.2.1.1.5.0'
         value_1 = rfc1902.OctetString('hola')
