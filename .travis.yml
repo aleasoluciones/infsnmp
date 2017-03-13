@@ -1,23 +1,27 @@
 sudo: required
 
 services:
-  - docker
-  
+- docker
+
 language: python
 
 python:
-  - "2.6"
-  - "2.7"
-  - "3.4"
+- '2.6'
+- '2.7'
+- '3.4'
+
 before_install:
-  - sudo apt-get -y update
-  - sudo apt-get -o DPkg::options::=--force-confmiss -y --force-yes install docker-engine
+- sudo apt-get -y update
+- sudo apt-get -o DPkg::options::=--force-confmiss -y --force-yes install docker-engine
 
 install:
-  - python setup.py develop
-  - pip install -r requirements.txt  -r requirements-dev.txt
+- python setup.py develop
+- pip install -r requirements.txt  -r requirements-dev.txt
 
 script:
-  - ./integration_tests.sh
-  
+- ./integration_tests.sh
 
+notifications:
+  hipchat:
+    rooms:
+      secure: EdzFITcWjz9O/mLDRwfcoR3KB45x7PJNZBZxFtCBryAE35wvl/nzFKVvE6tCZXSnJgeWWEUzrFuUV39pc/GfF++gon8SHb6eqNvTOAWOoxI0bgriD83tcxOcghm5SOYsYTlAbP60NCykxjRtFewDhUlI8dCUOLy9eV0sEdcOLiNKQfHiLHlqSNHSV31spbvswNkjmqatj5GyuZZsJO96Hbp6XYPBfjjsvWxO32SDflBliYVV8ZL0UPVs5sHpBYxTqDjflhqeEcRwmciXeC/KLAv3fSgOT8gtKL9UucaCr+zgvJ5mGmhDCHXy9DRu10+79utyfgZEps+n6KCifyyXUw++Z49RzjkADDUdsPxbATwATNKSZkfP+JLJwqxo9E0mwYmVlLfgDXw0NGuAKVqj+aMEuBH2ylTNcxNtEPMq5yXfMCKafiIL5jorL0EgKFWb/+Hns3+CHBU6QLmp9TsUpl6hg7fovnalanqrAxJ1ydGlxJJUYHflhi1OyN+jU9SbWVxilBH4ML04THwpJd8xfMxyW+XnhrLlTzBXs7nFXIKIUsoVOUjH5db01qmUdwMH0OvPNwUeBDnpKg8ZESE/2CesE2tBuB1Losn+oSyQGiOWSKm43oDxyG/MXZY7ADt90JnPTDjm8/ZwMwTD8cI9hSSeyW9lttYMblAEhQhwQew=
