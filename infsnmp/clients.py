@@ -56,7 +56,7 @@ class PySnmpClient(object):
                 if self.__is_suboid(oid, str_oid) and value.is_valid():
                     result.append((oid, value))
             return tuple(result)
-        except socket.error, exc:
+        except socket.error as exc:
             raise exceptions.SNMPSocketError(exc)
 
     def bulk_walk(self, host, community, str_oid, port=DEFAULT_PORT, timeout=DEFAULT_TIMEOUT, retries=DEFAULT_RETRIES, non_repeaters=0, max_repetitions=50):
@@ -81,7 +81,7 @@ class PySnmpClient(object):
                 if self.__is_suboid(oid, str_oid) and value.is_valid():
                     result.append((oid, value))
             return tuple(result)
-        except socket.error, exc:
+        except socket.error as exc:
             raise exceptions.SNMPSocketError(exc)
 
     def __convert_to_pysnmp_oid_format(self, str_oid):
@@ -108,7 +108,7 @@ class PySnmpClient(object):
             if err_status:
                 raise exceptions.SNMPLevelError(msg="SNMP PDU-level error %s status %s at %s" % (host, err_status, err_index))
 
-        except socket.error, exc:
+        except socket.error as exc:
             raise exceptions.SNMPExceptionError(exc)
 
     def _regenerate_snmp_types_from(self, snmp_values):
