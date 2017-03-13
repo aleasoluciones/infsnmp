@@ -92,7 +92,5 @@ class PySnmpTypesTest(unittest.TestCase):
         assert_that(snmp_value._value, is_('HWTC\xe5\x8f"\t'))
 
     def test_counter_64(self):
-	snmp_value = self.types.counter64(42)
-	assert_that(snmp_value, instance_of(pysnmp.proto.rfc1902.Counter64))
-
-
+        snmp_value = self.types.counter64(42)
+        assert_that(snmp_value, instance_of(pysnmp.proto.rfc1902.Counter64))
