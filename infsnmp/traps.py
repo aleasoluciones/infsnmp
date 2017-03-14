@@ -62,7 +62,7 @@ class PySnmpTrapDispatcher(object):
                 if request_pdu.isSameTypeWith(proto_module.TrapPDU()):
                     self._extract_and_process_trap(proto_module, request_pdu, transport_address)
         except Exception as exc:
-            logging.error('Error snmptrap: {}  {}'.format(exc, exc.__class__.__name__))
+            logging.critical('Error snmptrap: {}  {}'.format(exc, exc.__class__.__name__))
 
 
     def _extract_and_process_trap(self, proto_module, request_pdu, transport_address):
@@ -82,7 +82,7 @@ class PySnmpTrapDispatcher(object):
                             values=values)
                 )
             except TypeError:
-                logging.error('RequestPDU Error: {} transport_address {}'.format(request_pdu, transport_address))
+                logging.critical('RequestPDU Error: {} transport_address {}'.format(request_pdu, transport_address))
 
 
     def _extract_value(self, val):
