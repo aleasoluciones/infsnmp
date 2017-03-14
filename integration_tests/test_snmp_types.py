@@ -1,4 +1,5 @@
 import unittest
+import os
 from hamcrest import *
 
 import datetime
@@ -39,6 +40,7 @@ class PySnmpValuesTest(unittest.TestCase):
 
     def test_timestamp(self):
         # '07dd011c0c292c002b0100' -> '2013-01-28 12:41:44' -> timstamp 1359373304.0
+        os.environ['TZ'] = 'UTC'
         snmp_value = rfc1902.OctetString('07dd011c0c292c002b0100'.decode('hex'))
 
         assert_that(types.PySnmpValue(snmp_value).to_datetime(), is_(datetime.datetime(2013, 1, 28, 12, 41, 44)))
