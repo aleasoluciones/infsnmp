@@ -82,7 +82,7 @@ class PySnmpTrapDispatcher(object):
                             values=values)
                 )
             except TypeError:
-                logging.critical('RequestPDU Error: {} transport_address {}'.format(request_pdu, transport_address))
+                logging.critical('RequestPDU Error: {} transport_address {}'.format(request_pdu, transport_address), exc_info=True)
 
 
     def _extract_value(self, val):
