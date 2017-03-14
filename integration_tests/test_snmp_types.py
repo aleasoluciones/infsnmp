@@ -45,8 +45,7 @@ class PySnmpValuesTest(unittest.TestCase):
         os.environ['TZ'] = 'UTC'
         snmp_value = rfc1902.OctetString('07dd011c0c292c002b0100'.decode('hex'))
 
-        assert_that(types.PySnmpValue(snmp_value).to_datetime(), is_(datetime.datetime(2013, 1, 28, 12, 41, 44)))
-        assert_that(types.PySnmpValue(snmp_value).to_timestamp(), clock.Clock.timestamp(datetime.datetime(2013, 1, 28, 12, 41, 44)))
+        assert_that(types.PySnmpValue(snmp_value).to_timestamp(), is_(1359376904.0))
         assert_that(types.PySnmpValue(snmp_value).type_text(), is_('OctetString'))
 
     def test_gauge32(self):
