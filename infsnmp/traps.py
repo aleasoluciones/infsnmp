@@ -49,7 +49,7 @@ class PySnmpTrapDispatcher(object):
             while whole_msg:
                 msg_version = int(api.decodeMessageVersion(whole_msg))
                 if msg_version not in api.protoModules:
-                    logging.info('Unsupported SNMP version {} {}'.format(msg_version, transport_address[0]))
+                    logging.error('Unsupported SNMP version {} {}'.format(msg_version, transport_address[0]))
                     return
 
                 proto_module = api.protoModules[msg_version]

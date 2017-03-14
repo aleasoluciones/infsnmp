@@ -72,4 +72,4 @@ class PyOIDConverter(object):
         try:
             mib_builder.loadModules(module)
         except error.SmiError as exc:
-            logging.info("Error loading mib module {module} {exc}".format(module=module, exc=exc))
+            logging.error("Error loading mib module {module} {exc}".format(module=module, exc=exc))
