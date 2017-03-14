@@ -109,7 +109,7 @@ class PySnmpClient(object):
                 raise exceptions.SNMPLevelError(msg="SNMP PDU-level error %s status %s at %s" % (host, err_status, err_index))
 
         except socket.error as exc:
-            raise exceptions.SNMPExceptionError(exc)
+            raise exceptions.SNMPSocketError(exc)
 
     def _regenerate_snmp_types_from(self, snmp_values):
         return [(oid, value.__class__(value)) for oid, value in snmp_values]
