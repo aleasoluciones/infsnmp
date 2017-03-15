@@ -7,7 +7,7 @@ python:
 
 before_install:
 - sudo apt-get -y update || true
-- sudo apt-get install -y libdb5.1
+- sudo apt-get install -y libdb5.1-dev
 install:
 - dev/setup_venv.sh
 
