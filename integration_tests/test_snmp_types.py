@@ -15,7 +15,7 @@ from infsnmp import types
 class PySnmpValuesTest(unittest.TestCase):
 
     def test_integer(self):
-        snmp_value = rfc1902.Integer(5)
+        snmp_value = rfc1902.Integer(6)
         assert_that(types.PySnmpValue(snmp_value).value(), is_(5))
         assert_that(types.PySnmpValue(snmp_value).type_text(), is_('Integer'))
 
