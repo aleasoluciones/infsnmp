@@ -8,8 +8,6 @@ from pysnmp.proto import rfc1902
 
 from infsnmp import types, clients, exceptions
 
-def snmp_string(value):
-    return types.PySnmpValue(types.PySnmpTypes().octect_string(value))
 
 def snmp_integer(value):
     return types.PySnmpValue(types.PySnmpTypes().integer(value))
