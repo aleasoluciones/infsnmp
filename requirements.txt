@@ -1,4 +1,4 @@
--e git+https://github.com/aleasoluciones/infcommon.git@ffe5ec43e4b93e5da3a19688c68e7a3d90a019fc#egg=infcommon
+-e git+https://github.com/aleasoluciones/infcommon.git@76ef15f87572e09c9a61b013e0bd5c4b548028b6#egg=infcommon
 pyasn1==0.1.2
 pysnmp==4.2.4
 pysnmp-mibs==0.1.4
