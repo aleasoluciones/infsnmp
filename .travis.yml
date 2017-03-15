@@ -1,11 +1,19 @@
 sudo: required
+
 language: python
+
 python:
 - '2.7'
+
+before_install:
+- sudo apt-get -y update || true
+- sudo apt-get install -y libdb5.3
 install:
 - dev/setup_venv.sh
+
 script:
 - ./integration_tests.sh
+
 notifications:
   hipchat:
     rooms:
