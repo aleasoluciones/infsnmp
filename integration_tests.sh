@@ -1,12 +1,12 @@
 #!/bin/bash
 set -e
 
-trap "pkill -f snmpsimd.py; exit" SIGHUP SIGINT SIGTERM ERR EXIT
-python $(which snmpsimd.py) --v2c-arch --agent-port=1161 --device-dir=integration_tests/snmpsim/simulated_data/ --validate-device-data
-ps -fea | grep snmpsim
-sleep 10
-echo "Checking snmsip port up and running"
-ss -unl
+trap "docker stop -t 0 snmpsimd; docker rm snmpsimd; exit" SIGHUP SIGINT SIGTERM ERR
+docker build -t snmpsimd .
+docker run -d --name snmpsimd -v /etc/localtime:/etc/localtime:ro -v $(pwd)/integration_tests/snmpsim/simulated_data/:/simulated_data -p 1161:1161/udp snmpsimd
+sleep 5
 nosetests $INTEGRATION_TESTS -s --logging-clear-handlers --processes=16 --process-timeout=50 --with-yanc
 NOSE_RETCODE=$?
+docker stop -t 0 snmpsimd
+docker rm snmpsimd
 exit $NOSE_RETCODE
