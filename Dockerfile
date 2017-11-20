@@ -1,4 +1,4 @@
-FROM ubuntu:precise
+FROM ubuntu:trusty
 MAINTAINER bifer@alea-soluciones.com
 
 ENV DEBIAN_FRONTEND noninteractive
