@@ -75,6 +75,9 @@ class PySnmpTypes(object):
     def octect_string(self, value):
         return rfc1902.OctetString(value)
 
+    def octect_string_utf8(self, value):
+        return rfc1902.OctetString(value.encode('utf-8'))
+
     def ipaddress_string(self, value):
         return rfc1902.IpAddress(value)
 

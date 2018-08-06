@@ -84,6 +84,10 @@ class PySnmpTypesTest(unittest.TestCase):
         snmp_value = self.types.octect_string('HG8110')
         assert_that(snmp_value, instance_of(pysnmp.proto.rfc1902.OctetString))
 
+    def test_octect_string_utf8(self):
+        snmp_value = self.types.octect_string_utf8(u'Habitación 237')
+        assert_that(snmp_value, instance_of(pysnmp.proto.rfc1902.OctetString))
+
     def test_ipaddress_string(self):
         snmp_value = self.types.ipaddress_string('127.0.0.1')
         assert_that(snmp_value, instance_of(pysnmp.proto.rfc1902.IpAddress))
