@@ -1,5 +1,5 @@
--e git+https://github.com/aleasoluciones/infcommon.git@3429e1a6fd9a485ef67cc77ede936c637b01faaa#egg=infcommon
 pyasn1==0.1.2
 pysnmp==4.2.4
 pysnmp-mibs==0.1.4
 raven==5.3.1
+-e git+https://5e65b238880ede5823971e700c5d150dcc75ba99:x-oauth-basic@github.com/aleasoluciones/infcommon.git@3429e1a6fd9a485ef67cc77ede936c637b01faaa#egg=infcommon
