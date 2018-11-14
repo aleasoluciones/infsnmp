@@ -1,5 +1,4 @@
 pyasn1==0.1.2
 pysnmp==4.2.4
 pysnmp-mibs==0.1.4
-raven==5.3.1
--e git+https://github.com/aleasoluciones/infcommon.git@3429e1a6fd9a485ef67cc77ede936c637b01faaa#egg=infcommon
+-e git+https://github.com/aleasoluciones/infcommon.git#egg=infcommon
