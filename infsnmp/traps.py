@@ -45,6 +45,7 @@ class PySnmpTrapDispatcher(object):
     def _callback(self, transport_dispatcher, transport_domain, transport_address, whole_msg):
         try:
             while whole_msg:
+                logger.debug('Trap message type: {} Trap message value: {}'.format(type(whole_msg), whole_msg))
                 msg_version = int(api.decodeMessageVersion(whole_msg))
                 if msg_version not in api.protoModules:
                     logger.error('Unsupported SNMP version {} {}'.format(msg_version, transport_address[0]))
