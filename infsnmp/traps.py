@@ -45,7 +45,6 @@ class PySnmpTrapDispatcher(object):
     def _callback(self, transport_dispatcher, transport_domain, transport_address, whole_msg):
         try:
             while whole_msg:
-                logger.debug('Trap message type: {} Trap message value: {}'.format(type(whole_msg), whole_msg))
                 msg_version = int(api.decodeMessageVersion(whole_msg))
                 if msg_version not in api.protoModules:
                     logger.error('Unsupported SNMP version {} {}'.format(msg_version, transport_address[0]))
@@ -61,7 +60,10 @@ class PySnmpTrapDispatcher(object):
                 if request_pdu.isSameTypeWith(proto_module.TrapPDU()):
                     self._extract_and_process_trap(proto_module, request_pdu, transport_address)
         except Exception as exc:
-            logger.critical('Error snmptrap: {}  {}'.format(exc, exc.__class__.__name__))
+            logger.critical('Error snmptrap: {}  {}  Trap message type: {}  Trap message value: {}'.format(exc,
+                                                                                                           exc.__class__.__name__,
+                                                                                                           type(whole_msg),
+                                                                                                           whole_msg))
 
 
     def _extract_and_process_trap(self, proto_module, request_pdu, transport_address):
