@@ -20,7 +20,7 @@ install:
 - dev/setup_venv.sh
 
 script:
-- dev/integration_tests.sh
+- dev/all_tests.sh
 
 notifications:
   email:
