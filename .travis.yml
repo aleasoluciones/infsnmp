@@ -20,7 +20,9 @@ install:
 - dev/setup_venv.sh
 
 script:
+- echo $DOCKERHUB_TOKEN | docker login -u $DOCKERHUB_USER --password-stdin
 - dev/all_tests.sh
+- docker logout
 
 notifications:
   email:
